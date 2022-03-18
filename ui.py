@@ -80,7 +80,7 @@ class GlobalData:
             if (variable_name[0:2]=='X_'):
                 cmdhex = int(variable_name[2:4],16)
                 self.dictCmd[cmdhex] = variable_name
-        print vars(self)
+        print(vars(self))
 
 
         self.rotorServicesCmd = {
@@ -151,7 +151,7 @@ class GlobalData:
 
             if (self.rotorServicesCmd.has_key(cmd)):
                 cmd_str=self.rotorServicesCmd.get(cmd)
-                #print("0x%02x %40s chn=0x%x val:%d" % (cmd,cmd_str,chn,val))
+                print("0x%02x %40s chn=0x%x val:%d" % (cmd,cmd_str,chn,val))
 
 
 
@@ -190,9 +190,9 @@ class BLERotorUpdateThread(threading.Thread):
                     self.globalData.i += 1
 
             except Exception as inst:
-                print type(inst)     # the exception instance
-                print inst.args      # arguments stored in .args
-                print inst           # __str__ allows args to be printed directly
+                print(type(inst))     # the exception instance
+                print(inst.args)     # arguments stored in .args
+                print(inst)           # __str__ allows args to be printed directly
                 print("!")
                 time.sleep(1.2)
 
@@ -233,7 +233,7 @@ class RotorHeroForm(npyscreen.Form):
         
         self.auto_widgets = {}
         self.widget_unit = {}
-        cmds = self.globalData.dictCmd.keys();
+        cmds = self.globalData.dictCmd.keys()
         cmds = sorted(cmds)
         cnt = 0
         for cmd in cmds:
@@ -250,7 +250,7 @@ class RotorHeroForm(npyscreen.Form):
             if (cnt & 0x1):
                 self.nextrelx= 50
             else:
-                self.nextrelx= 0
+                self.nextrelx= 4
             widget = self.add(widgetClass = npyscreen.TitleText,max_width=45,begin_entry_at=23, name=name_text,value=0)
             self.nextrely -= 1
             if (cnt & 0x1):
